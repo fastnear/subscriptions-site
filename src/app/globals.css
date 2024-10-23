@@ -2,20 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode I guess */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: rgba(13, 16, 45, 0.6);
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: rgba(13, 16, 45, 0.6);
+    --foreground: #ffffff;
   }
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+button {
+  font-size: 1.125rem;
+  padding: 0.75rem 1.5rem;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+}
+
+.pricing-card p {
+  font-size: 1.25rem;
+}
+
+.pricing-card .price {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.billing-toggle {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+ol, li {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+li {
+  padding: 0.25rem 0;
 }

@@ -1,0 +1,34 @@
+.footer {
+    background-color: #9797ff;
+    color: var(--foreground);
+    text-align: center;
+    padding: 1rem;
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer a {
+    color: var(--foreground);
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/*.content {*/
+/*    min-height: calc(100vh - 4rem); !* Adjust this based on the footer height *!*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+.footer {
+    /*margin-top: auto; !* Pushes the footer to the bottom *!*/
+}
