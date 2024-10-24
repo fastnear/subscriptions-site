@@ -1,39 +1,39 @@
-import FastNearLogo from "@/app/_components/fastnear-logo";
+'use client'
 
-interface NavlinksProps {
-    user?: any;
-}
+import Link from 'next/link';
+import { useState } from 'react';
 
-export default function Navlinks({ user }: NavlinksProps) {
-    const router = getRedirectMethod() === 'client' ? useRouter() : null;
+export default function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleLogin = () => {
+        setIsLoggedIn(!isLoggedIn); // Toggle login state for simplicity
+    };
 
     return (
-        <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
-            <div className="flex items-center flex-1">
-                <Link href="/" aria-label="Logo">
-                    <FastNearLogo />
+        <nav className="flex justify-between items-center px-8 py-4 bg-black text-white">
+            <div className="flex space-x-4">
+                <Link href="/pricing">
+                    Pricing
                 </Link>
-                <nav className="ml-6 space-x-2 lg:block">
-                    <Link href="/">Pricing</Link>
-                    {user && (
-                        <Link href="/account">Account</Link>
-                    )}
-                </nav>
-            </div>
-            <div className="flex justify-end space-x-8">
-                {user ? (
-                    <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
-                        <input type="hidden" name="pathName" value={usePathname()} />
-                        <button type="submit" className={s.link}>
-                            Sign out
-                        </button>
-                    </form>
-                ) : (
-                    <Link href="/signin" className={s.link}>
-                        Sign In
+                {isLoggedIn && (
+                    <Link href="/dashboard">
+                        Dashboard
                     </Link>
                 )}
             </div>
-        </div>
+
+            <div className="space-x-4">
+                {!isLoggedIn ? (
+                    <button onClick={handleLogin} className="hover:underline">
+                        Login
+                    </button>
+                ) : (
+                    <button onClick={handleLogin} className="hover:underline">
+                        Logout
+                    </button>
+                )}
+            </div>
+        </nav>
     );
 }
