@@ -3,13 +3,12 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import "@/app/_components/footer.css";
 import Footer from "@/app/_components/footer";
+import Navbar from "@/app/_components/navbar";
 
-// Saw this is used on fastnear.com
+// font used on fastnear.com
 const dmSans = DM_Sans({
   subsets: ['latin']
 })
-
-console.log('aloha dmSans', dmSans)
 
 export const metadata: Metadata = {
   title: "FASTNEAR Subscriptions",
@@ -24,7 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.className} antialiased`}>
-        {children}
+        <Navbar />
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
