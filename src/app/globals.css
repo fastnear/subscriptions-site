@@ -9,6 +9,15 @@ html, body {
   flex-direction: column;
 }
 
+.pricing-card {
+  background-color: #1f1f1f;
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 #main-content {
   flex-grow: 1;
 }

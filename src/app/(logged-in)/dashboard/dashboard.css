@@ -1,0 +1,18 @@
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--background);
+    color: var(--foreground);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dashboard-container h1 {
+    color: #ffffff;
+}
+
+.dashboard-container p {
+    color: #d1d5db;
+}
