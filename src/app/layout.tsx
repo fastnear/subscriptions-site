@@ -7,8 +7,8 @@ import Navbar from "@/app/_components/navbar";
 
 // font used on fastnear.com
 const dmSans = DM_Sans({
-  subsets: ['latin']
-})
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "FASTNEAR Subscriptions",
@@ -22,11 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.className} antialiased`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+    <body className={`${dmSans.className} antialiased`} style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <Navbar />
+    <main style={{ flexGrow: 1 }}>{children}</main>
+    <Footer />
+    </body>
     </html>
   );
 }

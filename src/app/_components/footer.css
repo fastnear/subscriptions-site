@@ -1,10 +1,8 @@
 .footer {
-    background-color: #9797ff;
+    background-color: rgba(153, 153, 255, 0.6);
     color: var(--foreground);
     text-align: center;
     padding: 1rem;
-    /*position: fixed;*/
-    /*bottom: 0;*/
     width: 100%;
 }
 
@@ -21,14 +19,4 @@
 
 .footer a:hover {
     text-decoration: underline;
-}
-
-/*.content {*/
-/*    min-height: calc(100vh - 4rem); !* Adjust this based on the footer height *!*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
-.footer {
-    /*margin-top: auto; !* Pushes the footer to the bottom *!*/
 }
