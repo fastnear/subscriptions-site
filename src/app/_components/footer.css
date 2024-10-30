@@ -1,12 +1,12 @@
 .footer {
     background: linear-gradient(
             37deg,
-            rgba(255, 102, 204, 0.3),
-            rgba(153, 102, 255, 0.3)
+            rgba(255, 102, 204, 0.2),
+            rgba(153, 102, 255, 0.19)
     );
-    color: var(--foreground);
+    color: rgba(255, 255, 255, 0.42);
     text-align: center;
-    padding: 1rem;
+    padding: 0.666rem;
     width: 100%;
 }
 
