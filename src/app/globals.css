@@ -9,6 +9,13 @@ html, body {
   flex-direction: column;
 }
 
+/* thought this would halp */
+#fn-logo .logo {
+  width: 100px;
+  height: auto;
+  max-width: 100%;
+}
+
 .pricing-card {
   background-color: #1f1f1f;
   color: var(--foreground);
