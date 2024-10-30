@@ -1,6 +1,6 @@
 export const PLAN_TYPES = [
     {
-        name: 'Freemium',
+        name: 'Free tier',
         price: '$0',
         description: 'Freemium with limits.',
         internalName: 'free',
