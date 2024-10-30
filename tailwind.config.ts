@@ -17,22 +17,21 @@ const config: Config = {
           '0%, 100%': { opacity: '1', filter: 'brightness(200%)' },
           '50%': { opacity: '0.8', filter: 'brightness(300%)' },
         },
-        squish: {
-          '0%, 100%': { transform: 'scaleX(1)' },
-          '0%': { transform: 'scaleX(0.6)' },
-          // '10%, 90%': { transform: 'scaleX(0.4) scaleY(1.2)' },
-          '91%': { transform: 'scaleX(0.5) scaleY(1.3)' },
-          '100%': { transform: 'scaleX(1)' }
+        fadeInOut: {
+          '0%': { opacity: '0' },
+          '10%, 90%': { opacity: '1' },
+          '100%': { opacity: '0' },
         },
-        moveRight: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(1.3rem) rotate(0deg)' },
+        colorCycle: {
+          '0%': { backgroundColor: '#ff0077' },
+          '50%': { backgroundColor: '#9b5de5' },
+          '100%': { backgroundColor: '#ff0077' },
         },
       },
       animation: {
         'text-glow': 'textGlow 3s ease-in-out infinite',
-        'fast-squish': 'squish 0.6s ease-in 1',
-        'move-right-delay': 'moveRight 0.3s ease-out 0.6s forwards',
+        'fade-in-out': 'fadeInOut 3s ease-in-out infinite',
+        'color-cycle': 'colorCycle 5s linear infinite',
       },
     },
   },
