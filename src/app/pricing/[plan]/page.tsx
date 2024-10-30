@@ -1,3 +1,5 @@
+// TODO: don't worry about this file for a while, getting to know Next
+
 // the detail page for a given plan
 // currently 'free' | 'premium'
 // to add more, see plan-types.ts

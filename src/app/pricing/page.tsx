@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import {PLAN_TYPES} from "@/app/pricing/_logic/plan-types";
+import { PLAN_TYPES } from "@/app/pricing/_logic/plan-types";
 
 export default function PricingOptionsPage() {
-
   return (
     <div className="p-8">
       <h1 className="text-4xl font-bold text-center">Pricing Plans</h1>
@@ -15,9 +14,14 @@ export default function PricingOptionsPage() {
             <h2 className="text-2xl font-semibold mb-2 text-center">{plan.name}</h2>
             <p className="text-xl font-bold text-center mb-4">{plan.price}/month</p>
             <p className="text-center mb-6">{plan.description}</p>
-            <button className="w-full py-2 px-4 rounded bg-black text-white font-semibold hover:bg-gray-800 transition-colors">
+            <a
+              href={plan.externalLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full block py-2 px-4 rounded bg-black text-white font-semibold text-center hover:bg-gray-800 transition-colors"
+            >
               Subscribe
-            </button>
+            </a>
           </div>
         ))}
       </div>
