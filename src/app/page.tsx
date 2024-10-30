@@ -9,17 +9,6 @@ export default function Home() {
                 <div className="grid place-items-center h-full">
                     <FastNearLogo/>
                 </div>
-                <ol
-                  className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-dm-sans-2)]">
-                    <li className="mb-2">
-                        Get started by editing{" "}
-                        <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-                            src/app/page.tsx
-                        </code>
-                        .
-                    </li>
-                    <li>Save and see your changes instantly.</li>
-                </ol>
 
                 <p>Access the fastest RPC and indexing services for NEAR Protocol.</p>
 
