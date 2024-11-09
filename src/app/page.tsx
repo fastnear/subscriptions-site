@@ -29,7 +29,7 @@ export default function Home() {
                             alt="GitHub"
                             width={32}
                             height={32}
-                            className="hover:scale-110 transition-transform invert-me"
+                            className="hover:scale-110 transition-transform"
                           />
                       </a>
                       <span>Visit the FASTNEAR GitHub organization for open-source contributions.</span>
