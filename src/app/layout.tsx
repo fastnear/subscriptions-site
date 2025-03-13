@@ -22,11 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`${dmSans.className} antialiased`} style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-    <Navbar />
-    <main style={{ flexGrow: 1 }}>{children}</main>
-    <Footer />
-    </body>
+      <body className={`${dmSans.className} antialiased`} style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <Navbar />
+        <main style={{ flexGrow: 1 }}>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

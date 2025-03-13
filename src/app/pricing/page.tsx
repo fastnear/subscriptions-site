@@ -33,28 +33,28 @@ export default function PricingOptionsPage() {
         <h3 className="text-3xl font-bold text-center mb-6 tracking-wider">Comparison</h3>
         <table className="w-full text-center text-white">
           <thead>
-          <tr>
-            <th className="p-4 border-b border-gray-700 text-lg">Feature</th>
-            <th className="p-4 border-b border-gray-700 text-lg">Free</th>
-            <th className="p-4 border-b border-gray-700 text-lg">Premium</th>
-          </tr>
+            <tr>
+              <th className="p-4 border-b border-gray-700 text-lg">Feature</th>
+              <th className="p-4 border-b border-gray-700 text-lg">Free</th>
+              <th className="p-4 border-b border-gray-700 text-lg">Premium</th>
+            </tr>
           </thead>
           <tbody>
-          <tr>
-            <td className="p-4 border-b border-gray-700">API Rate Limit</td>
-            <td className="p-4 border-b border-gray-700">50 requests/min</td>
-            <td className="p-4 border-b border-gray-700">Unlimited</td>
-          </tr>
-          <tr>
-            <td className="p-4 border-b border-gray-700">Access additional FASTNEAR offerings</td>
-            <td className="p-4 border-b border-gray-700">Limited</td>
-            <td className="p-4 border-b border-gray-700">Yes</td>
-          </tr>
-          <tr>
-            <td className="p-4">Priority Support</td>
-            <td className="p-4">Limited capacity</td>
-            <td className="p-4 text-6xl">👂🏼</td>
-          </tr>
+            <tr>
+              <td className="p-4 border-b border-gray-700">API Rate Limit</td>
+              <td className="p-4 border-b border-gray-700">50 requests/min</td>
+              <td className="p-4 border-b border-gray-700">Unlimited</td>
+            </tr>
+            <tr>
+              <td className="p-4 border-b border-gray-700">Access additional FASTNEAR offerings</td>
+              <td className="p-4 border-b border-gray-700">Limited</td>
+              <td className="p-4 border-b border-gray-700">Yes</td>
+            </tr>
+            <tr>
+              <td className="p-4">Priority Support</td>
+              <td className="p-4">Limited capacity</td>
+              <td className="p-4 text-6xl">👂🏼</td>
+            </tr>
           </tbody>
         </table>
       </div>
