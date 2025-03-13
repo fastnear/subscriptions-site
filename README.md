@@ -8,10 +8,67 @@ Some plan details are defined here:
 
 Single-sign on and API keys and auth is all part of this, but there will be an initial push of interest during November that this site is meant to capture.
 
-## Do it
+## Development
 
     yarn
     yarn dev
+
+## Architecture
+
+### Theme System
+
+The application uses [next-themes](https://github.com/pacocoursey/next-themes) with a centralized theme configuration in `src/app/_components/theme-config.ts`. The theme system is built around utility classes that handle both light and dark modes automatically.
+
+#### Core Theme Classes
+
+- `section-themed`: Container-level styling with theme-aware backgrounds
+- `card-themed`: Component containers with elevated styling
+- `heading-themed`: Typography for headings with proper contrast
+- `text-themed-secondary`: Secondary text with appropriate opacity
+- `button-themed-primary`: Primary action buttons with hover states
+
+#### Implementation
+
+```typescript
+// Using theme-aware components
+<div className="section-themed">
+  <div className="card-themed">
+    <h2 className="heading-themed">Title</h2>
+    <p className="text-themed-secondary">Content</p>
+    <button className="button-themed-primary">Action</button>
+  </div>
+</div>
+```
+
+#### Theme Configuration
+
+Theme constants and assets are centralized:
+
+```typescript
+import { THEME, THEME_ASSETS } from '@/app/_components/theme-config';
+
+// Runtime theme detection
+const { resolvedTheme } = useTheme();
+const isDark = resolvedTheme === THEME.DARK;
+
+// Theme-aware assets
+const logoSrc = THEME_ASSETS.logo[resolvedTheme === THEME.DARK ? THEME.DARK : THEME.LIGHT];
+```
+
+### Page Structure
+
+Pages follow a consistent pattern:
+
+```
+src/app/
+├── _components/          # Shared components
+├── (logged-in)/         # Protected routes
+├── pricing/             # Public pages
+│   ├── _components/     # Page-specific components
+│   ├── _logic/         # Business logic
+│   └── page.tsx        # Page entry
+└── globals.css         # Theme utilities and global styles
+```
 
 ## External Libraries
 
