@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className="flex justify-between items-center px-8 py-4 bg-black text-white">
       <div className="flex items-center space-x-4">
         <div id="fn-logo">
-          <a href="/">
+          <Link href="/">
             <Image
               src="/fastnear_logo_white.png"
               alt="FASTNEAR Logo"
@@ -28,7 +28,7 @@ export default function Navbar() {
               priority
               className="logo"
             />
-          </a>
+          </Link>
         </div>
         <Link href="/pricing" className="hover:underline">
           Pricing
