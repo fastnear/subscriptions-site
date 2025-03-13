@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
   env: {
     PORT: process.env.PORT,
   },
+  devIndicators: false,
 };
 
 export default nextConfig;
