@@ -1,65 +1,79 @@
+'use client';
+
 import Image from "next/image";
 import FastNearLogo from "@/app/_components/fastnear-logo";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { THEME, THEME_ASSETS } from "@/app/_components/theme-config";
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-  // <div className="min-h-screen">
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-orange-950 to-gray-900 text-white">
-      <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center p-8 pb-10 sm:p-20 font-sans">
-        <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start max-w-screen-md">
-          <div className="flex justify-center mb-4">
-            <FastNearLogo />
-          </div>
+    <div className="landing-page min-h-screen bg-gradient-to-b from-white to-white/95 dark:from-gray-900 dark:to-gray-900/95">
+      {/* Hero Section with subtle gradient overlay */}
+      <div className="landing-hero relative overflow-hidden">
+        <div className="landing-hero__gradient absolute inset-0 bg-gradient-to-br from-slate-100/[0.02] via-transparent to-slate-300/[0.02] dark:from-slate-200/[0.02] dark:to-slate-400/[0.02]" />
 
-          <h1 className="text-4xl sm:text-5xl font-bold text-center sm:text-left">Access the fastest RPC for NEAR Protocol</h1>
+        <div className="landing-hero__container relative grid grid-rows-[auto_1fr_auto] items-center justify-items-center p-4 sm:p-8 md:p-12 lg:p-20 font-sans">
+          <main className="landing-content relative flex flex-col gap-6 sm:gap-8 row-start-2 items-center w-full max-w-[90%] sm:max-w-xl mx-auto">
+            {/* Logo section with enhanced spacing */}
+            <div className="landing-logo flex justify-center mb-6 sm:mb-8 w-auto max-w-[80%]">
+            {/*<div className="landing-logo flex justify-center mb-6 sm:mb-8 w-full">*/}
+              <div className="landing-logo__wrapper relative w-full max-w-[280px] sm:max-w-none">
+                <div className="landing-logo__glow absolute -inset-4 bg-gradient-to-r from-slate-100/[0.02] to-slate-300/[0.02] dark:from-slate-200/[0.02] dark:to-slate-400/[0.02] blur-lg" />
+                <FastNearLogo />
+              </div>
+            </div>
 
-          <p className="text-center sm:text-left text-lg max-w-xl">
-                      Start building with the best tools available for NEAR Protocol. Our platform offers freemium and paid plans to suit your needs.
-          </p>
+            {/* Main content with refined spacing and shadows */}
+            <div className="landing-content__main space-y-8 sm:space-y-12 w-full">
+              <div className="landing-heading relative">
+                <h1 className="landing-heading__title text-3xl sm:text-4xl md:text-5xl font-bold heading-themed leading-tight">
+                  Access the fastest RPC for NEAR Protocol
+                </h1>
+                <div className="landing-heading__glow absolute -inset-x-4 sm:-inset-x-6 -inset-y-4 bg-gradient-to-r from-slate-100/[0.02] via-transparent to-slate-300/[0.02] dark:from-slate-200/[0.02] dark:to-slate-400/[0.02] blur-sm -z-10" />
+              </div>
 
-          <p className="text-center sm:text-left text-lg max-w-xl">
-                      Freemium and paid plans are available. Log in with your account to begin the process.
-          </p>
+              <div className="landing-text space-y-4 sm:space-y-6 sm:text-left">
+                <p className="landing-text__paragraph text-base sm:text-lg text-slate-700 dark:text-gray-200">
+                  Start building with the best tools available for NEAR Protocol. Our platform offers freemium and paid plans to suit your needs.
+                </p>
 
-          <div className="flex items-center gap-3">
-            <a href="https://github.com/fastnear" target="_blank" rel="noopener noreferrer">
-              <Image
-                aria-hidden
-                src="/github.svg"
-                alt="GitHub"
-                width={32}
-                height={32}
-                className="hover:scale-110 transition-transform"
-              />
-            </a>
-            <span>Visit the FASTNEAR GitHub organization for open-source contributions.</span>
-          </div>
-        </main>
+                <p className="landing-text__paragraph text-base sm:text-lg text-slate-700 dark:text-gray-200">
+                  Freemium and paid plans are available. Log in with your account to begin the process.
+                </p>
+              </div>
+
+              {/* GitHub section with enhanced visual treatment */}
+              <div className="landing-github relative mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-gray-700/50 shadow-[0_8px_16px_-6px_rgba(0,0,0,0.05)]">
+                <div className="landing-github__content flex flex-col sm:flex-row items-center gap-4 sm:gap-3 sm:text-left">
+                  <a href="https://github.com/fastnear"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="landing-github__link transition-transform hover:scale-110 focus:scale-110 focus:outline-none"
+                     aria-label="Visit FASTNEAR GitHub">
+                    <Image
+                      src={mounted ? THEME_ASSETS.github[resolvedTheme === THEME.DARK ? THEME.DARK : THEME.LIGHT] : THEME_ASSETS.github[THEME.LIGHT]}
+                      alt=""
+                      width={32}
+                      height={32}
+                    />
+                  </a>
+                  <span className="landing-github__text text-sm sm:text-base text-slate-700 dark:text-gray-200">
+                    Visit the FASTNEAR GitHub organization for open-source contributions.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
-
-      {/*<section className="max-w-4xl w-fit mx-auto ">*/}
-      {/*    <h2*/}
-      {/*      className="text-5xl font-bold text-center mb-12 animate-pulse-fast animate-shimmer">*/}
-      {/*        trust earned by*/}
-      {/*    </h2>*/}
-
-      {/*    <div className="flex flex-col sm:flex-row gap-8">*/}
-      {/*        <div className="flex-1 p-6 bg-gray-800 rounded-lg shadow-lg transform hover:scale-105 transition-transform">*/}
-      {/*            <p className="text-lg italic mb-4">"The speed is unreal. No more waiting around!"</p>*/}
-      {/*            <div className="text-yellow-400 font-semibold text-right">@cyphernaut</div>*/}
-      {/*        </div>*/}
-
-      {/*        <div className="flex-1 p-6 bg-gray-850 rounded-lg shadow-lg transform hover:scale-105 transition-transform sm:mt-16">*/}
-      {/*            <p className="text-lg italic mb-4">"If you're serious about NEAR Protocol, you need FASTNEAR."</p>*/}
-      {/*            <div className="text-yellow-400 font-semibold text-right">@blockchainpirate</div>*/}
-      {/*        </div>*/}
-
-      {/*        <div className="flex-1 p-6 bg-gray-800 rounded-lg shadow-lg transform hover:scale-105 transition-transform">*/}
-      {/*            <p className="text-lg italic mb-4">"Rock solid reliability. FASTNEAR is the real deal."</p>*/}
-      {/*            <div className="text-yellow-400 font-semibold text-right">@darkwebsurfer</div>*/}
-      {/*        </div>*/}
-      {/*    </div>*/}
-      {/*</section>*/}
     </div>
   );
 }
