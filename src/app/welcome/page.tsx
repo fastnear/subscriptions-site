@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useCallback, Suspense} from 'react';
 import { useSearchParams } from 'next/navigation';
 
 interface GenerateKeyResponse {
@@ -13,7 +13,7 @@ const generateApiKey = async (sessionId: string) => {
   const encoder = new TextEncoder();
   const data = encoder.encode(sessionId);
   const secret = encoder.encode(process.env.NEXT_PUBLIC_API_SERVER_SECRET || 'dev-secret');
-  
+
   const key = await crypto.subtle.importKey(
     'raw',
     secret,
@@ -21,28 +21,21 @@ const generateApiKey = async (sessionId: string) => {
     false,
     ['sign']
   );
-  
+
   const signature = await crypto.subtle.sign('HMAC', key, data);
   return Array.from(new Uint8Array(signature))
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
 };
 
-export default function WelcomePage() {
+function WelcomePageContent() {
   const searchParams = useSearchParams();
   const [sessionId, setSessionId] = useState(searchParams.get('session_id') || '');
   const [keyData, setKeyData] = useState<GenerateKeyResponse | null>(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Auto-generate if session ID is present on mount
-  useEffect(() => {
-    if (sessionId) {
-      generateKey();
-    }
-  }, []);
-
-  const generateKey = async () => {
+  const generateKey = useCallback(async () => {
     if (!sessionId.trim()) {
       setError('Please enter a checkout session ID');
       return;
@@ -50,20 +43,25 @@ export default function WelcomePage() {
 
     setIsLoading(true);
     setError('');
-    
+
     try {
-      // Generate key directly
       const apiKey = await generateApiKey(sessionId);
       setKeyData({
         apiKey,
-        customerId: sessionId // Using session ID as customer ID for demo
+        customerId: sessionId
       });
     } catch (error) {
       setError('Failed to generate API key');
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [sessionId]);
+
+  useEffect(() => {
+    if (sessionId) {
+      generateKey();
+    }
+  }, [sessionId, generateKey]);
 
   return (
     <div className="section-themed flex flex-col items-center px-4">
@@ -73,7 +71,7 @@ export default function WelcomePage() {
         </h1>
 
         <div className="text-xl text-primary text-center mb-8">
-          🎉 Congratulations on your purchase! Let's get your API key set up.
+          🎉 Congratulations on your purchase! Let&apos;s get your API key set up.
         </div>
 
         {/* Key Generation Form */}
@@ -106,7 +104,7 @@ export default function WelcomePage() {
               <strong className="heading-themed block mb-2">Your API Key:</strong>
               <code className="block p-2 bg-gray-100 dark:bg-gray-800 rounded">{keyData.apiKey}</code>
             </div>
-            
+
             <div className="mb-6">
               <strong className="heading-themed block mb-2">Customer ID:</strong>
               <code className="block p-2 bg-gray-100 dark:bg-gray-800 rounded">{keyData.customerId}</code>
@@ -120,14 +118,14 @@ export default function WelcomePage() {
 
               <strong className="heading-themed block mt-4 mb-2">1. Pass apiKey in the URL:</strong>
               <pre className="overflow-x-auto p-4 bg-gray-100 dark:bg-gray-800 rounded text-sm">
-{`curl "https://rpc.mainnet.fastnear.com?apiKey=${keyData.apiKey}" \\
+                {`curl "https://rpc.mainnet.fastnear.com?apiKey=${keyData.apiKey}" \\
   -H "Content-Type: application/json" \\
   --data-raw '{"method":"block","params":{"finality":"optimistic"},"id":123,"jsonrpc":"2.0"}'`}
               </pre>
 
               <strong className="heading-themed block mt-4 mb-2">2. Provide authorization header:</strong>
               <pre className="overflow-x-auto p-4 bg-gray-100 dark:bg-gray-800 rounded text-sm">
-{`curl "https://rpc.mainnet.fastnear.com" \\
+                {`curl "https://rpc.mainnet.fastnear.com" \\
   -H "Authorization: Bearer ${keyData.apiKey}" \\
   -H "Content-Type: application/json" \\
   --data-raw '{"method":"block","params":{"finality":"optimistic"},"id":123,"jsonrpc":"2.0"}'`}
@@ -175,4 +173,26 @@ export default function WelcomePage() {
       </div>
     </div>
   );
-} 
+}
+
+// Loading fallback component
+function LoadingState() {
+  return (
+    <div className="section-themed flex flex-col items-center px-4">
+      <div className="max-w-4xl w-full text-center">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-64 mx-auto mb-4"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-96 mx-auto"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<LoadingState />}>
+      <WelcomePageContent />
+    </Suspense>
+  );
+}

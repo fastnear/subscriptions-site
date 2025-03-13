@@ -24,7 +24,6 @@ export default function Home() {
           <main className="landing-content relative flex flex-col gap-6 sm:gap-8 row-start-2 items-center w-full max-w-[90%] sm:max-w-xl mx-auto">
             {/* Logo section with enhanced spacing */}
             <div className="landing-logo flex justify-center mb-6 sm:mb-8 w-auto max-w-[80%]">
-            {/*<div className="landing-logo flex justify-center mb-6 sm:mb-8 w-full">*/}
               <div className="landing-logo__wrapper relative w-full max-w-[280px] sm:max-w-none">
                 <div className="landing-logo__glow absolute -inset-4 bg-gradient-to-r from-slate-100/[0.02] to-slate-300/[0.02] dark:from-slate-200/[0.02] dark:to-slate-400/[0.02] blur-lg" />
                 <FastNearLogo />
@@ -54,10 +53,10 @@ export default function Home() {
               <div className="landing-github relative mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-slate-200/50 dark:border-gray-700/50 shadow-[0_8px_16px_-6px_rgba(0,0,0,0.05)]">
                 <div className="landing-github__content flex flex-col sm:flex-row items-center gap-4 sm:gap-3 sm:text-left">
                   <a href="https://github.com/fastnear"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="landing-github__link transition-transform hover:scale-110 focus:scale-110 focus:outline-none"
-                     aria-label="Visit FASTNEAR GitHub">
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="landing-github__link transition-transform hover:scale-110 focus:scale-110 focus:outline-none"
+                    aria-label="Visit FASTNEAR GitHub">
                     <Image
                       src={mounted ? THEME_ASSETS.github[resolvedTheme === THEME.DARK ? THEME.DARK : THEME.LIGHT] : THEME_ASSETS.github[THEME.LIGHT]}
                       alt=""
